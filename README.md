@@ -30,10 +30,10 @@ The API will be running on `localhost:8000`.
 ## Use the API
 
 ### Work with rss Posts
-GET `/api/posts` return all posts from all feeds  
-GET `/api/posts/{ID}` return post with {ID}  
-GET `/api/posts/{ID}/all` return all posts from feed with {ID}  
-POST `/api/posts` with json like  
+1. GET `/api/posts` return all posts from all feeds  
+2. GET `/api/posts/{ID}` return post with {ID}  
+3. GET `/api/posts/{ID}/all` return all posts from feed with {ID}  
+4. POST `/api/posts` with json like  
 `{
     "title": "",
     "description": "",  
@@ -41,7 +41,7 @@ POST `/api/posts` with json like
     "guid": "",
     "feeds_id": ""
 }` create post  
-PUT `/api/posts/{ID}` with json like 
+5. PUT `/api/posts/{ID}` with json like 
 `{
     "title": "",
     "description": "",
@@ -49,12 +49,12 @@ PUT `/api/posts/{ID}` with json like
     "guid": "",
     "feeds_id": ""
 }` update post with {ID}  
-DELETE `/api/posts/{ID}` delete post with {ID}  
+6. DELETE `/api/posts/{ID}` delete post with {ID}  
 
 ### Work with rss Feeds
-GET `/api/feeds` return all feeds  
-GET `/api/feeds/{ID}` return feed with {ID}  
-POST `/api/feeds` with json like 
+1. GET `/api/feeds` return all feeds  
+2. GET `/api/feeds/{ID}` return feed with {ID}  
+3. POST `/api/feeds` with json like 
 `{
     "name": "",
     "description": "",
@@ -62,7 +62,7 @@ POST `/api/feeds` with json like
     "url_rss": "",
     "pub_time": "0000-00-00 00:00:00"
 }` create feed  
-PUT `/api/feeds/{ID}` with json like 
+4. PUT `/api/feeds/{ID}` with json like 
 `{
     "name": "",
     "description": "",
@@ -70,7 +70,7 @@ PUT `/api/feeds/{ID}` with json like
     "url_rss": "",
     "pub_time": "0000-00-00 00:00:00",
 }` update feed with {ID}  
-DELETE `/api/feeds/{ID}` delete feed with {ID}  
+5. DELETE `/api/feeds/{ID}` delete feed with {ID}  
 
 ## Cron job
 

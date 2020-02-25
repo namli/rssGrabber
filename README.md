@@ -37,9 +37,7 @@ POST `/api/posts` with json like
     "link": "",
     "guid": "",
     "feeds_id": ""
-}`
-
-create post  
+}` create post  
 PUT `/api/posts/{ID}` with json like 
 `{
     "title": "",
@@ -47,8 +45,7 @@ PUT `/api/posts/{ID}` with json like
     "link": "",
     "guid": "",
     "feeds_id": ""
-}`
-update post with {ID}  
+}` update post with {ID}  
 DELETE `/api/posts/{ID}` delete post with {ID}  
 
 ### Work with rss Feeds
@@ -61,8 +58,7 @@ POST `/api/feeds` with json like
     "url": "",
     "url_rss": "",
     "pub_time": "0000-00-00 00:00:00"
-}`
-create feed  
+}` create feed  
 PUT `/api/feeds/{ID}` with json like 
 `{
     "name": "",
@@ -70,8 +66,7 @@ PUT `/api/feeds/{ID}` with json like
     "url": "",
     "url_rss": "",
     "pub_time": "0000-00-00 00:00:00",
-}`
-update feed with {ID}  
+}` update feed with {ID}  
 DELETE `/api/feeds/{ID}` delete feed with {ID}  
 
 ## Cron job

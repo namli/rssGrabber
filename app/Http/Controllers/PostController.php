@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\PostRequest;
 use App\Model\Posts;
 use App\Model\Feeds;
 
@@ -15,76 +14,50 @@ class PostController extends Controller
         return Posts::all();
     }
 
-    public function show(Posts $post)
+    public function show(PostRequest $request, $id)
     {
+        $post = Posts::findOrFail($id);
         return $post;
     }
 
-    public function showFeedPosts(Feeds $feed)
-    {
-        $post = Posts::where('feeds_id', '=', $feed->id)->get();
-        return $post;
-    }
     // If we add post from request 
     //**************** */
-    public function storeRequest(Request $request, $item = null, $feed = null)
+    public function storeRequest(PostRequest $request)
     {
-        if (!empty($request)) {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'guid' => 'unique:posts,guid',
-                ]
-            );
-            if (!$validator->fails()) {
-                $post = Posts::create($request->all());
-            } else {
-                $post = "Post exists";
-            }
-        }
+        $post = Posts::create($request->validated());
         return response()->json($post, 201);
     }
+
+    //* If we grab post from feeds
+    //*********************** */
     public function storeGrub($item = null, $feed = null)
     {
-        //* If we grab post from feeds
-        //*********************** */
         if (!empty($item)) {
-            $validator = Validator::make(
-                [
-                    'guid' => $item->get_id()
-                ],
-                [
-                    'guid' => 'unique:posts,guid',
-                ]
-            );
-            if (!$validator->fails()) {
-                $post = Posts::create([
-                    'title' => $item->get_title(),
-                    'description' => $item->get_description(),
-                    'link' => $item->get_permalink(),
-                    'guid' => $item->get_id(),
-                    'author' => $item->get_author()->name,
-                    'pub_time' => $item->get_date('Y-m-d H:i:s'),
-                    'feeds_id' => $feed->id
-                ]);
-            } else {
-                $post = "Post exists";
-            }
+            $post = Posts::create([
+                'title' => $item->get_title(),
+                'description' => $item->get_description(),
+                'link' => $item->get_permalink(),
+                'guid' => $item->get_id(),
+                'author' => $item->get_author()->name,
+                'pub_time' => $item->get_date('Y-m-d H:i:s'),
+                'feeds_id' => $feed->id
+            ]);
         }
         return response()->json($post, 201);
     }
 
-    public function update(Request $request, Posts $post)
+    public function update(PostRequest $request, $id)
     {
-        $post->update($request->all());
-
+        $post = Posts::findOrFail($id);
+        $post->fill($request->except(['id']));
+        $post->save();
         return response()->json($post, 200);
     }
 
-    public function delete(Posts $post)
+    public function delete(PostRequest $request, $id)
     {
-        $post->delete();
-
+        $feed = Posts::findOrFail($id);
+        $feed->delete();
         return response()->json(null, 204);
     }
 

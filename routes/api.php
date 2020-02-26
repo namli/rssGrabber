@@ -17,14 +17,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('feeds', 'FeedController@index');
-Route::get('feeds/{feed}', 'FeedController@show');
+Route::get('feeds/{id}', 'FeedController@show');
+Route::get('feeds/{id}/all', 'PostController@showFeedPosts');
 Route::post('feeds', 'FeedController@store');
-Route::put('feeds/{feed}', 'FeedController@update');
-Route::delete('feeds/{feed}', 'FeedController@delete');
+Route::put('feeds/{id}', 'FeedController@update');
+Route::delete('feeds/{id}', 'FeedController@delete');
 
 Route::get('posts', 'PostController@index');
-Route::get('posts/{post}', 'PostController@show');
-Route::get('posts/{feed}/all', 'PostController@showFeedPosts');
+Route::get('posts/{id}', 'PostController@show');
 Route::post('posts', 'PostController@storeRequest');
-Route::put('posts/{post}', 'PostController@update');
-Route::delete('posts/{post}', 'PostController@delete');
+Route::put('posts/{id}', 'PostController@update');
+Route::delete('posts/{id}', 'PostController@delete');

@@ -83,7 +83,7 @@ Or you can run it manualy `php artisan posts:get`
 
 
 ## TODO
-1. Make especial RequestType for request and separate Validation from controller
-2. Validate all Values coming from user or feed
+1. ~~Make especial RequestType for request and separate Validation from controller~~ 2020.02.26 Doing 
+2. ~~Validate all Values coming from user or feed~~ 2020.02.26 Doing 
 3. Enable authorisation
 4. Write unit tests
